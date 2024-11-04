@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-int	ft_puthexmaj(size_t i)
+unsigned int	ft_puthexmaj(size_t i)
 {
-	char	*base;
-	size_t	cnt;
+	unsigned char	*base;
+	size_t			cnt;
 
 	cnt = 0;
-	base = "0123456789ABCDEF";
+	base = (unsigned char *)"0123456789ABCDEF";
 	if (i >= 16)
 		cnt += ft_puthexmaj(i / 16);
 	write(1, &base[i % 16], 1);
@@ -26,13 +26,13 @@ int	ft_puthexmaj(size_t i)
 	return (cnt);
 }
 
-int	ft_puthex(size_t i)
+unsigned int	ft_puthex(size_t i)
 {
-	char	*base;
-	size_t	cnt;
+	unsigned char	*base;
+	size_t			cnt;
 
 	cnt = 0;
-	base = "0123456789abcdef";
+	base = (unsigned char *)"0123456789abcdef";
 	if (i >= 16)
 		cnt += ft_puthex(i / 16);
 	write(1, &base[i % 16], 1);

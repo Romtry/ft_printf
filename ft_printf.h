@@ -16,16 +16,19 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
-int		ft_printf(const char *str, ...);
-int		ft_putchr(int c);
-int		ft_putstr(char *c);
-int		ft_putptr(size_t *c);
-int		ft_putnbr(int n);
-int		ft_putuni(unsigned int i);
-int		ft_puthex(size_t i);
-int		ft_puthexmaj(size_t i);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
+unsigned int	ft_putunl(unsigned long n);
+unsigned int	ft_printf(const unsigned char *str, ...);
+unsigned int	ft_putchr(unsigned int c);
+unsigned int	ft_putstr(char unsigned *c);
+unsigned int	ft_putptr(size_t *c);
+unsigned int	ft_putnbr(int n);
+unsigned int	ft_putuni(unsigned int i);
+unsigned int	ft_putlong(long n);
+unsigned int	ft_puthex(size_t i);
+unsigned int	ft_puthexmaj(size_t i);
+size_t			ft_strlen(const unsigned char *s);
+unsigned char	*ft_strdup(const unsigned char *s);
 
 #endif

@@ -14,28 +14,32 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	ft_putchr(int c)
+unsigned int	ft_putlong(long n)
 {
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *c)
-{
-	int	i;
+	int		i;
+	long	l;
 
 	i = 0;
-	if (!c)
-		c = "(null)";
-	while (c[i])
+	l = 1;
+	if (n == l << 63)
+		return (ft_putstr((unsigned char *)"-9223372036854775808"));
+	if (n < 0)
 	{
-		write(1, &c[i], 1);
+		n = n * -1;
+		ft_putchr('-');
 		i++;
 	}
-	return (i);
+	if (n >= 10)
+	{
+		i += ft_putnbr(n / 10);
+		ft_putchr('0' + n % 10);
+	}
+	else
+		ft_putchr(n + '0');
+	return (l + 1);
 }
 
-int	ft_putptr(size_t *c)
+unsigned int	ft_putptr(size_t *c)
 {
 	if (!c)
 	{
@@ -47,14 +51,14 @@ int	ft_putptr(size_t *c)
 	return (ft_puthex((size_t)c) + 2);
 }
 
-int	ft_putnbr(int n)
+unsigned int	ft_putnbr(int n)
 {
-	int	l;
+	unsigned int	l;
 
 	l = 0;
 	if (n == 1 << 31)
 	{
-		ft_putstr("-2147483648");
+		ft_putstr((unsigned char *)"-2147483648");
 		return (11);
 	}
 	if (n < 0)
@@ -73,9 +77,20 @@ int	ft_putnbr(int n)
 	return (l + 1);
 }
 
-int	ft_putuni(unsigned int i)
+unsigned int	ft_putunl(unsigned long n)
 {
-	int	cnt;
+	unsigned long	cnt;
+
+	cnt = 0;
+	if (n >= 10)
+		cnt += ft_putunl(n / 10);
+	ft_putchr('0' + n % 10);
+	return (cnt + 1);
+}
+
+unsigned int	ft_putuni(unsigned int i)
+{
+	unsigned int	cnt;
 
 	cnt = 0;
 	if (i >= 10)

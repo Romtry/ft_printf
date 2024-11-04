@@ -12,14 +12,35 @@
 
 #include "ft_printf.h"
 
-char	*ft_strdup(const char *s)
+unsigned int	ft_putstr(unsigned char *c)
 {
-	char	*str;
-	int		i;
+	int	i;
+
+	i = 0;
+	if (!c)
+		c = (unsigned char *)"(null)";
+	while (c[i])
+	{
+		write(1, &c[i], 1);
+		i++;
+	}
+	return (i);
+}
+
+unsigned int	ft_putchr(unsigned int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
+unsigned char	*ft_strdup(const unsigned char *s)
+{
+	unsigned char	*str;
+	unsigned int	i;
 
 	i = 0;
 	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	while (i - 1 != (int)ft_strlen(s))
+	while (i - 1 != (unsigned int)ft_strlen(s))
 	{
 		str[i] = s[i];
 		i++;
@@ -27,13 +48,14 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
-/*int	main(void)
+size_t	ft_strlen(const unsigned char *s)
 {
-	char	s[] = "lorem ipsum dolor sit amet";
-	char	*str;
+	unsigned int	i;
 
-	str = ft_strdup(s);
-	printf("%s\n", str);
-	free (str);
-	return (0);
-}*/
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}

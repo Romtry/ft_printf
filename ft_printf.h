@@ -19,7 +19,7 @@
 # include <stdarg.h>
 
 unsigned int	ft_putunl(unsigned long n);
-unsigned int	ft_printf(const unsigned char *str, ...);
+int				ft_printf(const char *str, ...);
 unsigned int	ft_putchr(unsigned int c);
 unsigned int	ft_putstr(char unsigned *c);
 unsigned int	ft_putptr(size_t *c);

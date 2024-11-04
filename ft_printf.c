@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-unsigned int	cmd(const unsigned char *str, va_list args)
+unsigned int	cmd(const char *str, va_list args)
 {
 	if (str[1] == 'c')
 		return (ft_putchr(va_arg(args, unsigned int)));
@@ -37,7 +37,7 @@ unsigned int	cmd(const unsigned char *str, va_list args)
 	return (1);
 }
 
-unsigned int	ft_printf(const unsigned char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list				args;
 	unsigned int		i;
@@ -63,13 +63,13 @@ unsigned int	ft_printf(const unsigned char *str, ...)
 
 // int	main(void)
 // {
-// 	char	*ptr;
-// 	char	**test;
+// 	// char	*ptr;
+// 	// char	**test;
 
 // 	//int i = 10;
 // 	//int *ptr = &i;
 // 	//str = malloc(1);
-// 	ft_printf("%x\n", 3735929054);
+// 	// ft_printf("%x\n", 3735929054);
 // 	//printf("%p", "test");
 // 	//free(str);
 // 	return (0);

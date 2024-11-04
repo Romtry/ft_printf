@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 unsigned int	cmd(const char *str, va_list args)
 {
@@ -28,13 +29,13 @@ unsigned int	cmd(const char *str, va_list args)
 		return (ft_puthex(va_arg(args, unsigned int)));
 	else if (str[1] == 'X')
 		return (ft_puthexmaj(va_arg(args, unsigned int)));
-	else if (str[1] == '%')
-		return (ft_putchr('%'));
 	else if (str[1] == 'l' && str[2] && str[2] == 'd')
 		return (ft_putlong(va_arg(args, long)));
 	else if (str[1] == 'l' && str[2] && str[2] == 'u')
 		return (ft_putunl(va_arg(args, unsigned long)));
-	return (1);
+	else if (str[1] == '%')
+		return (ft_putchr('%'));
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)
@@ -51,7 +52,11 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			l += cmd(str + i, args);
-			i++;
+			if (str[i + 1])
+				i++;
+			if (str[i + 1] && ((str[i] == 'l' && str[i + 1] == 'u')
+				|| (str[i == 'l'] && str[i + 1] == 'd')))
+				i++;
 		}
 		else
 			l += ft_putchr(str[i]);
@@ -63,13 +68,15 @@ int	ft_printf(const char *str, ...)
 
 // int	main(void)
 // {
+// 	unsigned long	n = ;
 // 	// char	*ptr;
 // 	// char	**test;
 
 // 	//int i = 10;
 // 	//int *ptr = &i;
 // 	//str = malloc(1);
-// 	// ft_printf("%x\n", 3735929054);
+// 	// printf("%%%v");
+// 	ft_printf("%lu", n);
 // 	//printf("%p", "test");
 // 	//free(str);
 // 	return (0);

@@ -21,8 +21,6 @@ unsigned int	ft_putlong(long n)
 
 	i = 0;
 	l = 1;
-	if (n == l << 63)
-		return (ft_putstr((unsigned char *)"-9223372036854775808"));
 	if (n < 0)
 	{
 		n = n * -1;
@@ -31,7 +29,7 @@ unsigned int	ft_putlong(long n)
 	}
 	if (n >= 10)
 	{
-		i += ft_putnbr(n / 10);
+		i += ft_putlong(n / 10);
 		ft_putchr('0' + n % 10);
 	}
 	else

@@ -68,7 +68,7 @@ int	ft_printf(const char *str, ...)
 
 // int	main(void)
 // {
-// 	unsigned long	n = ;
+// 	long	n = 9223372036854775808;
 // 	// char	*ptr;
 // 	// char	**test;
 
